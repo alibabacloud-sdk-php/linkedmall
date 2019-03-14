@@ -5,14 +5,15 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryAllCinemas
+ * Api QueryOrderList
  *
- * @method string getCityCode()
- * @method string getExtJson()
+ * @method string getBizUid()
+ * @method string getFilterOption()
  * @method string getBizId()
+ * @method string getPageSize()
  * @method string getPageNumber()
  */
-class QueryAllCinemas extends Rpc
+class QueryOrderList extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -23,27 +24,27 @@ class QueryAllCinemas extends Rpc
     public $serviceCode = 'linkedmall';
 
     /**
-     * @param string $cityCode
+     * @param string $bizUid
      *
      * @return $this
      */
-    public function withCityCode($cityCode)
+    public function withBizUid($bizUid)
     {
-        $this->data['CityCode'] = $cityCode;
-        $this->options['query']['CityCode'] = $cityCode;
+        $this->data['BizUid'] = $bizUid;
+        $this->options['query']['BizUid'] = $bizUid;
 
         return $this;
     }
 
     /**
-     * @param string $extJson
+     * @param string $filterOption
      *
      * @return $this
      */
-    public function withExtJson($extJson)
+    public function withFilterOption($filterOption)
     {
-        $this->data['ExtJson'] = $extJson;
-        $this->options['query']['ExtJson'] = $extJson;
+        $this->data['FilterOption'] = $filterOption;
+        $this->options['query']['FilterOption'] = $filterOption;
 
         return $this;
     }
@@ -57,6 +58,19 @@ class QueryAllCinemas extends Rpc
     {
         $this->data['BizId'] = $bizId;
         $this->options['query']['BizId'] = $bizId;
+
+        return $this;
+    }
+
+    /**
+     * @param string $pageSize
+     *
+     * @return $this
+     */
+    public function withPageSize($pageSize)
+    {
+        $this->data['PageSize'] = $pageSize;
+        $this->options['query']['PageSize'] = $pageSize;
 
         return $this;
     }

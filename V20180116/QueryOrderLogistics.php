@@ -5,12 +5,13 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryItemDetail
+ * Api QueryOrderLogistics
  *
- * @method string getItemId()
+ * @method string getLmOrderId()
+ * @method string getBizUid()
  * @method string getBizId()
  */
-class QueryItemDetail extends Rpc
+class QueryOrderLogistics extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -21,14 +22,27 @@ class QueryItemDetail extends Rpc
     public $serviceCode = 'linkedmall';
 
     /**
-     * @param string $itemId
+     * @param string $lmOrderId
      *
      * @return $this
      */
-    public function withItemId($itemId)
+    public function withLmOrderId($lmOrderId)
     {
-        $this->data['ItemId'] = $itemId;
-        $this->options['query']['ItemId'] = $itemId;
+        $this->data['LmOrderId'] = $lmOrderId;
+        $this->options['query']['LmOrderId'] = $lmOrderId;
+
+        return $this;
+    }
+
+    /**
+     * @param string $bizUid
+     *
+     * @return $this
+     */
+    public function withBizUid($bizUid)
+    {
+        $this->data['BizUid'] = $bizUid;
+        $this->options['query']['BizUid'] = $bizUid;
 
         return $this;
     }

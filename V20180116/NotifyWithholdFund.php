@@ -5,15 +5,16 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api NotifyPayOrderStatus
+ * Api NotifyWithholdFund
  *
  * @method string getAmount()
  * @method string getPayTypes()
+ * @method string getTenantOrderId()
  * @method string getRequestId()
  * @method string getOperationDate()
  * @method string getChannelId()
  */
-class NotifyPayOrderStatus extends Rpc
+class NotifyWithholdFund extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -45,6 +46,19 @@ class NotifyPayOrderStatus extends Rpc
     {
         $this->data['PayTypes'] = $payTypes;
         $this->options['query']['PayTypes'] = $payTypes;
+
+        return $this;
+    }
+
+    /**
+     * @param string $tenantOrderId
+     *
+     * @return $this
+     */
+    public function withTenantOrderId($tenantOrderId)
+    {
+        $this->data['TenantOrderId'] = $tenantOrderId;
+        $this->options['query']['TenantOrderId'] = $tenantOrderId;
 
         return $this;
     }

@@ -5,15 +5,13 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryBizItems
+ * Api ModifyBizItems
  *
  * @method string getBizId()
- * @method string getPageSize()
- * @method string getUserId()
- * @method string getPageNumber()
+ * @method array getItemList()
  * @method string getSubBizId()
  */
-class QueryBizItems extends Rpc
+class ModifyBizItems extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -37,40 +35,19 @@ class QueryBizItems extends Rpc
     }
 
     /**
-     * @param string $pageSize
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withPageSize($pageSize)
+    public function withItemList(array $itemList)
     {
-        $this->data['PageSize'] = $pageSize;
-        $this->options['query']['PageSize'] = $pageSize;
-
-        return $this;
-    }
-
-    /**
-     * @param string $userId
-     *
-     * @return $this
-     */
-    public function withUserId($userId)
-    {
-        $this->data['UserId'] = $userId;
-        $this->options['query']['UserId'] = $userId;
-
-        return $this;
-    }
-
-    /**
-     * @param string $pageNumber
-     *
-     * @return $this
-     */
-    public function withPageNumber($pageNumber)
-    {
-        $this->data['PageNumber'] = $pageNumber;
-        $this->options['query']['PageNumber'] = $pageNumber;
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $i => $iValue) {
+            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $itemList[$i]['ItemId'];
+            foreach ($itemList[$i]['SkuLists'] as $j => $jValue) {
+                $this->options['query']['ItemList.' . ($i + 1) . '.SkuList.' . ($j + 1)] = $jValue;
+            }
+        }
 
         return $this;
     }

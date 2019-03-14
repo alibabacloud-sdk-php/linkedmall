@@ -5,7 +5,7 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryBizItems
+ * Api QueryBizItemList
  *
  * @method string getBizId()
  * @method string getPageSize()
@@ -13,7 +13,7 @@ use AlibabaCloud\Rpc;
  * @method string getPageNumber()
  * @method string getSubBizId()
  */
-class QueryBizItems extends Rpc
+class QueryBizItemList extends Rpc
 {
     public $product = 'linkedmall';
 

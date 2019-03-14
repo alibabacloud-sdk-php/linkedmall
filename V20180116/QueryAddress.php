@@ -5,13 +5,13 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryMovieSeats
+ * Api QueryAddress
  *
- * @method string getExtJson()
+ * @method string getIp()
  * @method string getBizId()
- * @method string getScheduleId()
+ * @method string getLevel3DivisionCode()
  */
-class QueryMovieSeats extends Rpc
+class QueryAddress extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -22,14 +22,14 @@ class QueryMovieSeats extends Rpc
     public $serviceCode = 'linkedmall';
 
     /**
-     * @param string $extJson
+     * @param string $ip
      *
      * @return $this
      */
-    public function withExtJson($extJson)
+    public function withIp($ip)
     {
-        $this->data['ExtJson'] = $extJson;
-        $this->options['query']['ExtJson'] = $extJson;
+        $this->data['Ip'] = $ip;
+        $this->options['query']['Ip'] = $ip;
 
         return $this;
     }
@@ -48,14 +48,14 @@ class QueryMovieSeats extends Rpc
     }
 
     /**
-     * @param string $scheduleId
+     * @param string $level3DivisionCode
      *
      * @return $this
      */
-    public function withScheduleId($scheduleId)
+    public function withLevel3DivisionCode($level3DivisionCode)
     {
-        $this->data['ScheduleId'] = $scheduleId;
-        $this->options['query']['ScheduleId'] = $scheduleId;
+        $this->data['Level3DivisionCode'] = $level3DivisionCode;
+        $this->options['query']['Level3DivisionCode'] = $level3DivisionCode;
 
         return $this;
     }

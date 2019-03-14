@@ -5,13 +5,12 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryMovieSeats
+ * Api AddSupplierNewItems
  *
- * @method string getExtJson()
  * @method string getBizId()
- * @method string getScheduleId()
+ * @method array getItemList()
  */
-class QueryMovieSeats extends Rpc
+class AddSupplierNewItems extends Rpc
 {
     public $product = 'linkedmall';
 
@@ -20,19 +19,6 @@ class QueryMovieSeats extends Rpc
     public $method = 'POST';
 
     public $serviceCode = 'linkedmall';
-
-    /**
-     * @param string $extJson
-     *
-     * @return $this
-     */
-    public function withExtJson($extJson)
-    {
-        $this->data['ExtJson'] = $extJson;
-        $this->options['query']['ExtJson'] = $extJson;
-
-        return $this;
-    }
 
     /**
      * @param string $bizId
@@ -48,14 +34,19 @@ class QueryMovieSeats extends Rpc
     }
 
     /**
-     * @param string $scheduleId
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withScheduleId($scheduleId)
+    public function withItemList(array $itemList)
     {
-        $this->data['ScheduleId'] = $scheduleId;
-        $this->options['query']['ScheduleId'] = $scheduleId;
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $i => $iValue) {
+            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $itemList[$i]['ItemId'];
+            foreach ($itemList[$i]['SkuLists'] as $j => $jValue) {
+                $this->options['query']['ItemList.' . ($i + 1) . '.SkuList.' . ($j + 1)] = $jValue;
+            }
+        }
 
         return $this;
     }

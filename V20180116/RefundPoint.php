@@ -5,56 +5,58 @@ namespace AlibabaCloud\Linkedmall\V20180116;
 use AlibabaCloud\Rpc;
 
 /**
- * Api QueryMovieTickets
+ * Api RefundPoint
  *
- * @method string getOrderId()
- * @method string getBizUid()
- * @method string getExtJson()
+ * @method string getReason()
+ * @method string getSellerId()
+ * @method string getLmOrderId()
  * @method string getBizId()
  */
-class QueryMovieTickets extends Rpc
+class RefundPoint extends Rpc
 {
     public $product = 'linkedmall';
 
     public $version = '2018-01-16';
 
+    public $method = 'POST';
+
     public $serviceCode = 'linkedmall';
 
     /**
-     * @param string $orderId
+     * @param string $reason
      *
      * @return $this
      */
-    public function withOrderId($orderId)
+    public function withReason($reason)
     {
-        $this->data['OrderId'] = $orderId;
-        $this->options['query']['OrderId'] = $orderId;
+        $this->data['Reason'] = $reason;
+        $this->options['query']['Reason'] = $reason;
 
         return $this;
     }
 
     /**
-     * @param string $bizUid
+     * @param string $sellerId
      *
      * @return $this
      */
-    public function withBizUid($bizUid)
+    public function withSellerId($sellerId)
     {
-        $this->data['BizUid'] = $bizUid;
-        $this->options['query']['BizUid'] = $bizUid;
+        $this->data['SellerId'] = $sellerId;
+        $this->options['query']['SellerId'] = $sellerId;
 
         return $this;
     }
 
     /**
-     * @param string $extJson
+     * @param string $lmOrderId
      *
      * @return $this
      */
-    public function withExtJson($extJson)
+    public function withLmOrderId($lmOrderId)
     {
-        $this->data['ExtJson'] = $extJson;
-        $this->options['query']['ExtJson'] = $extJson;
+        $this->data['LmOrderId'] = $lmOrderId;
+        $this->options['query']['LmOrderId'] = $lmOrderId;
 
         return $this;
     }
