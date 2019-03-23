@@ -2,7 +2,49 @@
 
 namespace AlibabaCloud\Linkedmall\V20180116;
 
+use AlibabaCloud\ApiResolverTrait;
 use AlibabaCloud\Rpc;
+
+/**
+ * Resolve Api based on the method name.
+ *
+ * @method RepayOrder repayOrder(array $options = [])
+ * @method QueryLogistics queryLogistics(array $options = [])
+ * @method RefundPoint refundPoint(array $options = [])
+ * @method QueryAddress queryAddress(array $options = [])
+ * @method CancelOrder cancelOrder(array $options = [])
+ * @method AddSupplierNewItems addSupplierNewItems(array $options = [])
+ * @method QueryBizItemList queryBizItemList(array $options = [])
+ * @method ModifyBizItems modifyBizItems(array $options = [])
+ * @method QueryOrderList queryOrderList(array $options = [])
+ * @method QueryOrderLogistics queryOrderLogistics(array $options = [])
+ * @method Repay repay(array $options = [])
+ * @method DeleteBizItems deleteBizItems(array $options = [])
+ * @method QueryItemInventory queryItemInventory(array $options = [])
+ * @method NotifyWithholdFund notifyWithholdFund(array $options = [])
+ * @method CreateOrder createOrder(array $options = [])
+ * @method CreateMovieTicketOrder createMovieTicketOrder(array $options = [])
+ * @method QueryGuideItemGroup queryGuideItemGroup(array $options = [])
+ * @method QueryItemDetail queryItemDetail(array $options = [])
+ * @method ReserveMovieSeat reserveMovieSeat(array $options = [])
+ * @method ReleaseMovieSeat releaseMovieSeat(array $options = [])
+ * @method QueryUpcomingMovies queryUpcomingMovies(array $options = [])
+ * @method QueryMovieSeats queryMovieSeats(array $options = [])
+ * @method QueryMovieSchedules queryMovieSchedules(array $options = [])
+ * @method QueryHotMovies queryHotMovies(array $options = [])
+ * @method QueryAllCities queryAllCities(array $options = [])
+ * @method QueryAllCinemas queryAllCinemas(array $options = [])
+ * @method QueryMovieComments queryMovieComments(array $options = [])
+ * @method QueryMovieTickets queryMovieTickets(array $options = [])
+ * @method RemoveMessages removeMessages(array $options = [])
+ * @method QueryMessages queryMessages(array $options = [])
+ * @method QueryBizItems queryBizItems(array $options = [])
+ * @method NotifyPayOrderStatus notifyPayOrderStatus(array $options = [])
+ */
+class LinkedmallApiResolver
+{
+    use ApiResolverTrait;
+}
 
 class V20180116Rpc extends Rpc
 {
@@ -17,6 +59,18 @@ class V20180116Rpc extends Rpc
 
     /** @var string */
     public $serviceCode = 'linkedmall';
+}
+
+/**
+ * @method string getLmOrderId()
+ * @method $this withLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ */
+class RepayOrder extends V20180116Rpc
+{
 }
 
 /**
@@ -66,14 +120,14 @@ class CancelOrder extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $lmOrderIdList
      *
      * @return $this
      */
-    public function withLmOrderIdList(array $value)
+    public function withLmOrderIdList(array $lmOrderIdList)
     {
-        $this->data['LmOrderIdList'] = $value;
-        foreach ($value as $i => $iValue) {
+        $this->data['LmOrderIdList'] = $lmOrderIdList;
+        foreach ($lmOrderIdList as $i => $iValue) {
             $this->options['query']['LmOrderIdList.' . ($i + 1)] = $iValue;
         }
 
@@ -90,17 +144,17 @@ class AddSupplierNewItems extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withItemList(array $value)
+    public function withItemList(array $itemList)
     {
-        $this->data['ItemList'] = $value;
-        foreach ($value as $i => $iValue) {
-            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $value[$i]['ItemId'];
-            foreach ($value[$i]['SkuLists'] as $j => $jValue) {
-                $this->options['query']['ItemList.' . ($i + 1) . '.SkuList.' . ($j + 1)] = $jValue;
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            foreach ($depth1Value['SkuList'] as $i => $iValue) {
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($i + 1)] = $iValue;
             }
         }
 
@@ -135,17 +189,23 @@ class ModifyBizItems extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withItemList(array $value)
+    public function withItemList(array $itemList)
     {
-        $this->data['ItemList'] = $value;
-        foreach ($value as $i => $iValue) {
-            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $value[$i]['ItemId'];
-            foreach ($value[$i]['SkuLists'] as $j => $jValue) {
-                $this->options['query']['ItemList.' . ($i + 1) . '.SkuList.' . ($j + 1)] = $jValue;
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            foreach ($depth1Value['SkuList'] as $depth2 => $depth2Value) {
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.StatusAction'] = $depth2Value['StatusAction'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.PriceCent'] = $depth2Value['PriceCent'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.PointsAmount'] = $depth2Value['PointsAmount'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.Quantity'] = $depth2Value['Quantity'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.BenefitId'] = $depth2Value['BenefitId'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.SkuId'] = $depth2Value['SkuId'];
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.Points'] = $depth2Value['Points'];
             }
         }
 
@@ -204,14 +264,14 @@ class DeleteBizItems extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $itemIdList
      *
      * @return $this
      */
-    public function withItemIdList(array $value)
+    public function withItemIdList(array $itemIdList)
     {
-        $this->data['ItemIdList'] = $value;
-        foreach ($value as $i => $iValue) {
+        $this->data['ItemIdList'] = $itemIdList;
+        foreach ($itemIdList as $i => $iValue) {
             $this->options['query']['ItemIdList.' . ($i + 1)] = $iValue;
         }
 
@@ -232,17 +292,17 @@ class QueryItemInventory extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withItemList(array $value)
+    public function withItemList(array $itemList)
     {
-        $this->data['ItemList'] = $value;
-        foreach ($value as $i => $iValue) {
-            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $value[$i]['ItemId'];
-            foreach ($value[$i]['SkuIdLists'] as $j => $jValue) {
-                $this->options['query']['ItemList.' . ($i + 1) . '.SkuIdList.' . ($j + 1)] = $jValue;
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            foreach ($depth1Value['SkuIdList'] as $i => $iValue) {
+                $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuIdList.' . ($i + 1)] = $iValue;
             }
         }
 
@@ -293,17 +353,17 @@ class CreateOrder extends V20180116Rpc
 {
 
     /**
-     * @param array $value
+     * @param array $itemList
      *
      * @return $this
      */
-    public function withItemList(array $value)
+    public function withItemList(array $itemList)
     {
-        $this->data['ItemList'] = $value;
-        foreach ($value as $i => $iValue) {
-            $this->options['query']['ItemList.' . ($i + 1) . '.ItemId'] = $value[$i]['ItemId'];
-            $this->options['query']['ItemList.' . ($i + 1) . '.Quantity'] = $value[$i]['Quantity'];
-            $this->options['query']['ItemList.' . ($i + 1) . '.SkuId'] = $value[$i]['SkuId'];
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.Quantity'] = $depth1Value['Quantity'];
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuId'] = $depth1Value['SkuId'];
         }
 
         return $this;
