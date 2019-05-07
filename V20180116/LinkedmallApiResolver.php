@@ -8,6 +8,13 @@ use AlibabaCloud\Rpc;
 /**
  * Resolve Api based on the method name.
  *
+ * @method RenderOrder renderOrder(array $options = [])
+ * @method ConfirmDisburse confirmDisburse(array $options = [])
+ * @method ModifyBasicAndBizItems modifyBasicAndBizItems(array $options = [])
+ * @method QueryRefundApplicationDetail queryRefundApplicationDetail(array $options = [])
+ * @method SubmitReturnGoodLogistics submitReturnGoodLogistics(array $options = [])
+ * @method ApplyRefund applyRefund(array $options = [])
+ * @method InitApplyRefund initApplyRefund(array $options = [])
  * @method RepayOrder repayOrder(array $options = [])
  * @method QueryLogistics queryLogistics(array $options = [])
  * @method RefundPoint refundPoint(array $options = [])
@@ -58,6 +65,185 @@ class V20180116Rpc extends Rpc
 
     /** @var string */
     public $serviceCode = 'linkedmall';
+}
+
+/**
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getExtJson()
+ * @method $this withExtJson($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ * @method array getItemList()
+ * @method string getDeliveryAddress()
+ * @method $this withDeliveryAddress($value)
+ */
+class RenderOrder extends V20180116Rpc
+{
+
+    /**
+     * @param array $itemList
+     *
+     * @return $this
+     */
+    public function withItemList(array $itemList)
+    {
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.Quantity'] = $depth1Value['Quantity'];
+            $this->options['query']['ItemList.' . ($depth1 + 1) . '.SkuId'] = $depth1Value['SkuId'];
+        }
+
+        return $this;
+    }
+}
+
+/**
+ * @method string getLmOrderId()
+ * @method $this withLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ */
+class ConfirmDisburse extends V20180116Rpc
+{
+}
+
+/**
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ * @method array getItemList()
+ * @method string getSubBizId()
+ * @method $this withSubBizId($value)
+ */
+class ModifyBasicAndBizItems extends V20180116Rpc
+{
+
+    /**
+     * @param array $itemList
+     *
+     * @return $this
+     */
+    public function withItemList(array $itemList)
+    {
+        $this->data['ItemList'] = $itemList;
+        foreach ($itemList as $depth1 => $depth1Value) {
+            $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.ItemId'] = $depth1Value['ItemId'];
+            foreach ($depth1Value['SkuList'] as $depth2 => $depth2Value) {
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.StatusAction'] = $depth2Value['StatusAction'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.PriceCent'] = $depth2Value['PriceCent'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.PointsAmount'] = $depth2Value['PointsAmount'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.Quantity'] = $depth2Value['Quantity'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.BenefitId'] = $depth2Value['BenefitId'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.SkuId'] = $depth2Value['SkuId'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.SupplierPrice'] = $depth2Value['SupplierPrice'];
+                $this->options['form_params']['ItemList.' . ($depth1 + 1) . '.SkuList.' . ($depth2 + 1) . '.Points'] = $depth2Value['Points'];
+            }
+        }
+
+        return $this;
+    }
+}
+
+/**
+ * @method string getSubLmOrderId()
+ * @method $this withSubLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ */
+class QueryRefundApplicationDetail extends V20180116Rpc
+{
+}
+
+/**
+ * @method string getCpCode()
+ * @method $this withCpCode($value)
+ * @method string getSubLmOrderId()
+ * @method $this withSubLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getDisputeId()
+ * @method $this withDisputeId($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ * @method string getLogisticsNo()
+ * @method $this withLogisticsNo($value)
+ */
+class SubmitReturnGoodLogistics extends V20180116Rpc
+{
+}
+
+/**
+ * @method string getGoodsStatus()
+ * @method $this withGoodsStatus($value)
+ * @method string getSubLmOrderId()
+ * @method $this withSubLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getApplyRefundFee()
+ * @method $this withApplyRefundFee($value)
+ * @method string getBizClaimType()
+ * @method $this withBizClaimType($value)
+ * @method string getApplyReasonTextId()
+ * @method $this withApplyReasonTextId($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ * @method array getLeavePictureList()
+ * @method string getApplyRefundCount()
+ * @method $this withApplyRefundCount($value)
+ * @method string getLeaveMessage()
+ */
+class ApplyRefund extends V20180116Rpc
+{
+
+    /**
+     * @param array $leavePictureList
+     *
+     * @return $this
+     */
+    public function withLeavePictureList(array $leavePictureList)
+    {
+        $this->data['LeavePictureList'] = $leavePictureList;
+        foreach ($leavePictureList as $depth1 => $depth1Value) {
+            $this->options['form_params']['LeavePictureList.' . ($depth1 + 1) . '.Picture'] = $depth1Value['Picture'];
+            $this->options['form_params']['LeavePictureList.' . ($depth1 + 1) . '.Desc'] = $depth1Value['Desc'];
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withLeaveMessage($value)
+    {
+        $this->data['LeaveMessage'] = $value;
+        $this->options['form_params']['LeaveMessage'] = $value;
+
+        return $this;
+    }
+}
+
+/**
+ * @method string getGoodsStatus()
+ * @method $this withGoodsStatus($value)
+ * @method string getSubLmOrderId()
+ * @method $this withSubLmOrderId($value)
+ * @method string getBizUid()
+ * @method $this withBizUid($value)
+ * @method string getBizClaimType()
+ * @method $this withBizClaimType($value)
+ * @method string getBizId()
+ * @method $this withBizId($value)
+ */
+class InitApplyRefund extends V20180116Rpc
+{
 }
 
 /**
