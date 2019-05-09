@@ -5,8 +5,8 @@ namespace AlibabaCloud\Linkedmall;
 use AlibabaCloud\Client\Resolver\VersionResolver;
 
 /**
- * @deprecated
+ * @method static V20180116\LinkedmallApiResolver v20180116()
  */
-class LinkedmallVersion extends VersionResolver
+class Linkedmall extends VersionResolver
 {
 }
